@@ -6,7 +6,8 @@ Many thanks to megvii for your contributions to the community
 
 
 breakpoint at：  
- `       if i % 1 == 0:  
+ `if i % 1 == 0:  
+ 
             print("debug point")`
 
 cmd：
