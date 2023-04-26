@@ -1,0 +1,24 @@
+Batch size: 100
+
+1. 3x224x224                self.qact_input  量化image
+
+
+2. 3x224x224 -> 197x384     self.patch_embed 分割image并量化
+	3x224x224 -> 14x14x384 -> 196x384  self.proj().flatten(2).transpose(1, 2) (Conv2d:3x16x16x384)
+	196x384   self.qact 量化act
+	
+3. 196x384 ->  197x384  (self.cls_tokens)
+
+4. 197x384 + 197x384 -> 197x384 (self.qact_pos)
+
+5. 197x384 -> 197x384 (self.qact_pos)
+
+6. 197x384 -> 12个Encoder -> 197x384
+
+7. 197x384 -> 1x384 (self.norm)
+	
+8. 1x384   -> 1x384 (self.qact2)
+
+9. 1x384   -> 1x1000 (self.head)
+
+10. 1x1000 -> 1x1000 (self.act1_out)
