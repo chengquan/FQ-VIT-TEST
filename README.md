@@ -9,7 +9,7 @@ breakpoint at：
  `if i % 1 == 0:  
   print("debug point")`
 
-cmd：
+cmd：  
 1.python test_quant.py deit_small ../data/ --quant --ptf --lis --quant-method minmax  
 2.python model_test.py  
 3.python showimg_int.py ../export/qact_input_int8.txt  
